@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import xx.text.TextProvider;
@@ -14,7 +15,7 @@ public abstract class TextProviderPanel<T extends TextProvider> extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-	private JTextArea textArea;
+	protected JTextArea textArea;
 	private T textProvider;
 	
 	public TextProviderPanel(T textProvider) {
@@ -27,7 +28,7 @@ public abstract class TextProviderPanel<T extends TextProvider> extends JPanel {
 		textArea = new JTextArea(textProvider.getText());
 		textArea.getDocument().addDocumentListener(new TextProviderDocumentListener(textProvider));
 		
-		add(textArea, BorderLayout.CENTER);
+		add(new JScrollPane(textArea), BorderLayout.CENTER);
 
 		init();
 	}

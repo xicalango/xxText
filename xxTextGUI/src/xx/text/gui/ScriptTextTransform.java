@@ -16,11 +16,9 @@ public class ScriptTextTransform extends JFrame {
 	
 	public ScriptTextTransform() {
 		
-		final TextData data = new DefaultTextData("test");
-		
 		final TextScriptSplitContainer dataPanel = new TextScriptSplitContainer();
 		
-		dataPanel.openTextData(data);
+		dataPanel.openTextData(new DefaultTextData());
 		dataPanel.openScript(new DefaultScript("JavaScript"));
 	
 		add(dataPanel, BorderLayout.CENTER);

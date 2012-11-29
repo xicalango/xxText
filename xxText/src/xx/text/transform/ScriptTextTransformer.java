@@ -50,6 +50,7 @@ public class ScriptTextTransformer implements TextTranformator<Script> {
 			bindings.put("_in", in);
 			bindings.put("_out", out);
 			bindings.put("_text", data.getText());
+			bindings.put("_lines", data.getText().split("\n"));
 			
 			engine.eval(script.getText(), bindings);
 			

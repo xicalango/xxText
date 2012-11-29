@@ -2,6 +2,7 @@ package xx.text.gui.scriptdata;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,6 +46,8 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 				getTextProvider().setLanguage((String) languagesComboBox.getSelectedItem());
 			}});
 		
+		languagesComboBox.setSelectedItem(getTextProvider().getLanguage());
+		
 		optionsPanel.add(languagesComboBox);
 		
 		useButton = new JButton("Use script");
@@ -56,6 +59,10 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 		optionsPanel.add(useButton);
 		
 		add(optionsPanel, BorderLayout.NORTH);
+		
+		
+		textArea.setLineWrap(true);
+		textArea.setFont(new Font("Monospaced",Font.PLAIN,15));
 	}
 	
 }
