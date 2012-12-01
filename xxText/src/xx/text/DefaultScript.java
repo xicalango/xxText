@@ -2,9 +2,11 @@ package xx.text;
 
 public class DefaultScript implements Script {
 
+	private static int scriptNumber = 0;
+	
 	private String language;
 	private String text = "";
-	private String name = "Script #" + System.currentTimeMillis() ;
+	private String name = "Script #" + scriptNumber++;
 	
 	public String getName() {
 		return name;

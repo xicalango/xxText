@@ -1,9 +1,6 @@
 package xx.text.transform;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.script.Bindings;
@@ -16,7 +13,7 @@ import xx.text.Script;
 import xx.text.ScriptGeneratedTextData;
 import xx.text.TextData;
 
-public class ScriptTextTransformer implements TextTranformator<Script> {
+public class ScriptTextTransformer implements Tranformator<TextData, Script> {
 
 	private Script script;
 	private ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
@@ -44,24 +41,20 @@ public class ScriptTextTransformer implements TextTranformator<Script> {
 			
 			StringWriter outputStringWriter = new StringWriter();
 			PrintWriter out = new PrintWriter(outputStringWriter);
-			BufferedReader in = new BufferedReader(new StringReader(data.getText()));
 
 			Bindings bindings = engine.createBindings();
-			bindings.put("_in", in);
+			data.putBindings(bindings);
 			bindings.put("_out", out);
-			bindings.put("_text", data.getText());
-			bindings.put("_lines", data.getText().split("\n"));
 			
 			engine.eval(script.getText(), bindings);
 			
-			in.close();
 			out.close();
 			
 			ScriptGeneratedTextData gentext = ScriptGeneratedTextData.createFromScript(script, data);
 			gentext.setText(outputStringWriter.toString());
 			return gentext;
 			
-		} catch (ScriptException | IOException e) {
+		} catch (ScriptException e) {
 			throw new TransformerException(e);
 		}
 		

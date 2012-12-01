@@ -2,6 +2,11 @@ package xx.text.transform;
 
 public class TransformerException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TransformerException() {
 		super();
 		// TODO Auto-generated constructor stub

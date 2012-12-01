@@ -17,7 +17,7 @@ public class ScriptGeneratedTextData extends DefaultTextData implements Generate
 		ScriptGeneratedTextData result = new ScriptGeneratedTextData();
 		result.generatorScript = s;
 		result.setFather(father);
-		result.setName(s.getName() + "(" + father.getName() + ") #" + System.currentTimeMillis());
+		result.setName(s.getName() + "(" + father.getName() + ")");
 		return result;
 	}
 
