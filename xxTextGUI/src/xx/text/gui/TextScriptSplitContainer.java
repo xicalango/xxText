@@ -9,6 +9,7 @@ import xx.text.Script;
 import xx.text.TextData;
 import xx.text.gui.scriptdata.ScriptDataOpener;
 import xx.text.gui.scriptdata.ScriptDataTabContainer;
+import xx.text.gui.scriptdata.ScriptRunSelector;
 import xx.text.gui.scriptdata.ScriptUser;
 import xx.text.gui.textdata.TextDataOpener;
 import xx.text.gui.textdata.TextDataTabContainer;
@@ -48,7 +49,7 @@ public class TextScriptSplitContainer extends JSplitPane implements TextDataOpen
 
 
 	@Override
-	public void useScript(Script s) {
+	public void useScript(Script s, ScriptRunSelector runSelector) {
 		try {
 			ScriptTextTransformer stt = new ScriptTextTransformer(s);
 			
@@ -56,6 +57,24 @@ public class TextScriptSplitContainer extends JSplitPane implements TextDataOpen
 			
 			if( currentTextProvider == null ) {
 				currentTextProvider = new DefaultTextData(); 
+			}
+			
+			switch(runSelector) {
+			case THIS_SCRIPT:
+				break;
+			case PARENT_SCRIPT:
+				if(currentTextProvider.getParent() != null) {
+					currentTextProvider = currentTextProvider.getParent();
+				}
+				break;
+			case ROOT_SCRIPT: {
+					TextData startTextData = currentTextProvider;
+				
+					while(currentTextProvider.getParent() != null && currentTextProvider.getParent() != startTextData) {
+						currentTextProvider = currentTextProvider.getParent();
+					}
+					break;
+				}
 			}
 			
 			final GeneratedTextData<Script> generatedText = stt.transform( currentTextProvider );

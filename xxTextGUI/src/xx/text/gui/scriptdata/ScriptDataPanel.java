@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import xx.text.DefaultScript;
@@ -19,6 +20,7 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 	private JPanel optionsPanel;
 	private JComboBox<String> languagesComboBox;
 	private JButton useButton;
+	private JComboBox<ScriptRunSelector> useOnComboBox;
 	
 	private ScriptUser scriptUser;
 	
@@ -53,10 +55,17 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 		useButton = new JButton("Use script");
 		useButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scriptUser.useScript(getTextProvider());
+				scriptUser.useScript(getTextProvider(), (ScriptRunSelector) useOnComboBox.getSelectedItem());
 			}});
 		
 		optionsPanel.add(useButton);
+		
+		optionsPanel.add(new JLabel(" on "));
+		
+		useOnComboBox = new JComboBox<>(ScriptRunSelector.values());
+		useOnComboBox.setSelectedItem(ScriptRunSelector.THIS_SCRIPT);
+		
+		optionsPanel.add(useOnComboBox);
 		
 		add(optionsPanel, BorderLayout.NORTH);
 		
