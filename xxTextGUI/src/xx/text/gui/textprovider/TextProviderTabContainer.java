@@ -2,12 +2,7 @@ package xx.text.gui.textprovider;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -15,7 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,6 +19,8 @@ import xx.text.TextProvider;
 
 public abstract class TextProviderTabContainer<T extends TextProvider> extends JPanel implements TextProviderOpener<T>, TextProviderButtonListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private class TabMouseListener extends MouseAdapter {
 
 		@Override

@@ -17,6 +17,9 @@ import xx.text.gui.textprovider.TextProviderPanel;
 
 public class ScriptDataPanel extends TextProviderPanel<Script> {
 	
+	private static final long serialVersionUID = 1L;
+	
+	
 	private JPanel optionsPanel;
 	private JComboBox<String> languagesComboBox;
 	private JButton useButton;

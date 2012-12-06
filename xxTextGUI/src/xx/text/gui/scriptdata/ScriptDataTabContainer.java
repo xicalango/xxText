@@ -7,13 +7,14 @@ import javax.swing.JFileChooser;
 
 import xx.text.DefaultScript;
 import xx.text.FileScript;
-import xx.text.FileTextData;
 import xx.text.Script;
 import xx.text.gui.textprovider.TextProviderPanel;
 import xx.text.gui.textprovider.TextProviderTabContainer;
 
 public class ScriptDataTabContainer extends TextProviderTabContainer<Script> implements ScriptDataOpener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ScriptUser scriptUser;
 	
 	public ScriptDataTabContainer(ScriptUser scriptUser) {

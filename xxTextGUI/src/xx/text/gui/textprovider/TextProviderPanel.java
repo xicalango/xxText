@@ -1,7 +1,6 @@
 package xx.text.gui.textprovider;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -11,7 +10,6 @@ import xx.text.TextProvider;
 import xx.text.adapter.TextProviderDocumentListener;
 
 public abstract class TextProviderPanel<T extends TextProvider> extends JPanel {
-
 	
 	private static final long serialVersionUID = 1L;
 

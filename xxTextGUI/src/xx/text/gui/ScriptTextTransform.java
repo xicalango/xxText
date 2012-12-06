@@ -11,7 +11,8 @@ import xx.text.DefaultTextData;
 
 public class ScriptTextTransform extends JFrame {
 
-	
+	private static final long serialVersionUID = 1L;
+
 	public ScriptTextTransform() {
 		final TextScriptSplitContainer dataPanel = new TextScriptSplitContainer();
 		

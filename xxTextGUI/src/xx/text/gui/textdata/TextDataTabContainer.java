@@ -11,6 +11,8 @@ import xx.text.gui.textprovider.TextProviderTabContainer;
 
 public class TextDataTabContainer extends TextProviderTabContainer<TextData> implements TextDataOpener {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void openTextData(TextData textData) {
 		addTextProvider(textData);
