@@ -53,7 +53,6 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 		
 		languagesComboBox.setSelectedItem(getTextProvider().getLanguage());
 		
-		optionsPanel.add(languagesComboBox);
 		
 		useButton = new JButton("Use script");
 		useButton.addActionListener(new ActionListener() {
@@ -61,14 +60,18 @@ public class ScriptDataPanel extends TextProviderPanel<Script> {
 				scriptUser.useScript(getTextProvider(), (ScriptRunSelector) useOnComboBox.getSelectedItem());
 			}});
 		
-		optionsPanel.add(useButton);
 		
-		optionsPanel.add(new JLabel(" on "));
 		
 		useOnComboBox = new JComboBox<>(ScriptRunSelector.values());
-		useOnComboBox.setSelectedItem(ScriptRunSelector.THIS_SCRIPT);
+		useOnComboBox.setSelectedItem(ScriptRunSelector.THIS_TEXT);
 		
+		
+		optionsPanel.add(useButton);
+		optionsPanel.add(new JLabel(" on "));
 		optionsPanel.add(useOnComboBox);
+		optionsPanel.add(new JLabel(" as "));
+		optionsPanel.add(languagesComboBox);
+		
 		
 		add(optionsPanel, BorderLayout.NORTH);
 		

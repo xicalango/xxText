@@ -60,14 +60,14 @@ public class TextScriptSplitContainer extends JSplitPane implements TextDataOpen
 			}
 			
 			switch(runSelector) {
-			case THIS_SCRIPT:
+			case THIS_TEXT:
 				break;
-			case PARENT_SCRIPT:
+			case PARENT_TEXT:
 				if(currentTextProvider.getParent() != null) {
 					currentTextProvider = currentTextProvider.getParent();
 				}
 				break;
-			case ROOT_SCRIPT: {
+			case ROOT_TEXT: {
 					TextData startTextData = currentTextProvider;
 				
 					while(currentTextProvider.getParent() != null && currentTextProvider.getParent() != startTextData) {

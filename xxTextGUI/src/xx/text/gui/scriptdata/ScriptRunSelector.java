@@ -1,9 +1,9 @@
 package xx.text.gui.scriptdata;
 
 public enum ScriptRunSelector {
-	THIS_SCRIPT("this script"),
-	PARENT_SCRIPT("parent script"),
-	ROOT_SCRIPT("root script");
+	THIS_TEXT("this text"),
+	PARENT_TEXT("parent text"),
+	ROOT_TEXT("root text");
 	
 	private String name;
 
