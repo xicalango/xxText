@@ -11,9 +11,11 @@ public class DefaultTextData implements TextData {
 	
 	private TextProvider father = null;
 	private String text;
-	private String name = "Text #" + textNumber++;
+	private String name = generateName();
 	
-	
+	protected String generateName() {
+		return "Text #" + textNumber++;
+	}
 	
 	public String getName() {
 		return name;

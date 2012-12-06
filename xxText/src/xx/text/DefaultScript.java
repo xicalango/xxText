@@ -6,7 +6,11 @@ public class DefaultScript implements Script {
 	
 	private String language;
 	private String text = "";
-	private String name = "Script #" + scriptNumber++;
+	private String name = generateName();
+
+	protected String generateName() {
+		return "Script #" + scriptNumber++;
+	}
 	
 	public String getName() {
 		return name;
