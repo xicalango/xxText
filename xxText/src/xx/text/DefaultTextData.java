@@ -9,7 +9,7 @@ public class DefaultTextData implements TextData {
 
 	private static int textNumber = 0;
 	
-	private TextProvider father = null;
+	private TextData father = null;
 	private String text;
 	private String name = generateName();
 	
@@ -25,12 +25,12 @@ public class DefaultTextData implements TextData {
 		this.name = name;
 	}
 
-	protected void setFather(TextProvider father) {
+	protected void setFather(TextData father) {
 		this.father = father;
 	}
 	
 	@Override
-	public TextProvider getFather() {
+	public TextData getParent() {
 		return father;
 	}
 
