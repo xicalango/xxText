@@ -30,7 +30,7 @@ public class FileScript extends DefaultScript {
 		
 		ScriptEngine eng = new ScriptEngineManager().getEngineByExtension(ext);
 		if(eng != null) {
-			setLanguage(eng.getFactory().getEngineName());
+			setLanguage(eng.getFactory().getLanguageName());
 		} else {
 			throw new RuntimeException("Unknown extension: " + ext);
 		}
