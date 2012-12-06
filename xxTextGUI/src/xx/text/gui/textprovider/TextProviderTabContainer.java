@@ -2,6 +2,7 @@ package xx.text.gui.textprovider;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
@@ -9,17 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import xx.text.TextProvider;
 
-public abstract class TextProviderTabContainer<T extends TextProvider> extends JPanel implements TextProviderOpener<T> {
+public abstract class TextProviderTabContainer<T extends TextProvider> extends JPanel implements TextProviderOpener<T>, TextProviderButtonListener {
 
 	private class TabMouseListener extends MouseAdapter {
 
@@ -57,7 +61,6 @@ public abstract class TextProviderTabContainer<T extends TextProvider> extends J
 	}
 	
 	private JTabbedPane tabPane;
-	private JPanel buttonPanel;
 	
 	private Map<Component, T> textDataPanels = new HashMap<>();
 	
@@ -75,19 +78,39 @@ public abstract class TextProviderTabContainer<T extends TextProvider> extends J
 		
 		add(tabPane, BorderLayout.CENTER);
 		
-		buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		TextProviderButtonsPanel buttonsPanel = new TextProviderButtonsPanel(this);
 		
-		JButton newTextProvider = new JButton("new");
-		newTextProvider.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				addTextProvider(createDefaultTextProvider());	
-			}});
-		
-		buttonPanel.add(newTextProvider);
-		
-		add(buttonPanel, BorderLayout.NORTH);
+		add(buttonsPanel, BorderLayout.NORTH);
 	}
 	
+	@Override
+	public void onNewClicked() {
+		addTextProvider(createDefaultTextProvider());
+	}
+	
+	@Override
+	public void onOpenClicked(File[] selectedFile) {
+		for(File file : selectedFile) {
+			onOpenClicked(file);
+		}
+	}
+	
+	@Override
+	public void onOpenClicked(File file) {
+		try {
+			addTextProvider(loadTextProvider(file));
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "Unable to load " + file.getName() + ": " + e.getMessage());
+		}
+	}
+	
+	@Override
+	public void configureFileChooser(JFileChooser chooser) {}
+	
+	@Override
+	public Component getMainComponent() {
+		return this;
+	}
 
 	@Override
 	public void addTextProvider(T data) {
@@ -105,5 +128,6 @@ public abstract class TextProviderTabContainer<T extends TextProvider> extends J
 	
 	protected abstract TextProviderPanel<T> createTextProviderPanel(T data);
 	protected abstract T createDefaultTextProvider();
+	protected abstract T loadTextProvider(File f) throws IOException;
 	
 }

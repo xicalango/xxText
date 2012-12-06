@@ -55,7 +55,6 @@ public class TextScriptSplitContainer extends JSplitPane implements TextDataOpen
 			TextData currentTextProvider = textDataTabContainer.getCurrentTextProvider();
 			
 			if( currentTextProvider == null ) {
-				System.out.println(currentTextProvider);
 				currentTextProvider = new DefaultTextData(); 
 			}
 			

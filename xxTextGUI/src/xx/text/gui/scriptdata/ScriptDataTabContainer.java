@@ -1,6 +1,13 @@
 package xx.text.gui.scriptdata;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JFileChooser;
+
 import xx.text.DefaultScript;
+import xx.text.FileScript;
+import xx.text.FileTextData;
 import xx.text.Script;
 import xx.text.gui.textprovider.TextProviderPanel;
 import xx.text.gui.textprovider.TextProviderTabContainer;
@@ -31,6 +38,16 @@ public class ScriptDataTabContainer extends TextProviderTabContainer<Script> imp
 		String name = currentTextProvider == null ? "ECMAScript" : currentTextProvider.getLanguage();
 		
 		return new DefaultScript(name);
+	}
+
+	@Override
+	protected Script loadTextProvider(File f) throws IOException {
+		return new FileScript(f);
+	}
+	
+	@Override
+	public void configureFileChooser(JFileChooser chooser) {
+		chooser.setFileFilter(new ScriptEngineFileFilter());
 	}
 
 }

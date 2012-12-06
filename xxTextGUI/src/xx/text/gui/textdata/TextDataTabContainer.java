@@ -1,6 +1,10 @@
 package xx.text.gui.textdata;
 
+import java.io.File;
+import java.io.IOException;
+
 import xx.text.DefaultTextData;
+import xx.text.FileTextData;
 import xx.text.TextData;
 import xx.text.gui.textprovider.TextProviderPanel;
 import xx.text.gui.textprovider.TextProviderTabContainer;
@@ -20,6 +24,11 @@ public class TextDataTabContainer extends TextProviderTabContainer<TextData> imp
 	@Override
 	protected TextData createDefaultTextProvider() {
 		return new DefaultTextData();
+	}
+
+	@Override
+	protected TextData loadTextProvider(File f) throws IOException {
+		return new FileTextData(f);
 	}
 
 	
